@@ -1,6 +1,7 @@
 package com.reluck.java_marvelapi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<String> mDataset;
+    private List<Film> mDataset;
 
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -22,26 +23,35 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.textView.setText(mDataset.get(position));
+        holder.textTitle.setText(mDataset.get(position).getTitle());
+        String teste = mDataset.get(position).getTitle();
+        holder.textDate.setText(mDataset.get(position).getReleaseDate());
+
+        holder.view.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.view.getContext(), FilmActivity.class);
+            intent.putExtra("url", mDataset.get(position).getUrl());
+            holder.view.getContext().startActivity(intent);
+        });
+
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public View view;
-        public  TextView textView;
+        public  TextView textTitle;
+        public  TextView textDate;
+        public  TextView textOpeningCrawl;
         public MyViewHolder(View v, Context context) {
             super(v);
             view = v;
-            textView = view.findViewById(R.id.textTest);
+            textTitle = view.findViewById(R.id.textTitle);
+            textDate = view.findViewById(R.id.textDate);
+            textOpeningCrawl = view.findViewById(R.id.textOpeningCrawl);
         }
     }
 
-    public MyAdapter(List<String> myDataset) {
+    public MyAdapter(List<Film> myDataset) {
         mDataset = myDataset;
     }
-
-
-
-
 
 
     @Override

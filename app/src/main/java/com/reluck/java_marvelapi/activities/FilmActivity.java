@@ -1,9 +1,13 @@
-package com.reluck.java_marvelapi;
+package com.reluck.java_marvelapi.activities;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.reluck.java_marvelapi.data.Film;
+import com.reluck.java_marvelapi.R;
+import com.reluck.java_marvelapi.providers.StarWarsApi;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,6 +23,7 @@ public class FilmActivity extends AppCompatActivity {
     private TextView textDate;
     private TextView textOpeningCrawl;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,8 @@ public class FilmActivity extends AppCompatActivity {
                 .subscribe( movie -> {
                     updateFilmInfo(movie);
                     System.out.println(movie);
+                }, err -> {
+                    System.out.println(err);
                 });
 
     }

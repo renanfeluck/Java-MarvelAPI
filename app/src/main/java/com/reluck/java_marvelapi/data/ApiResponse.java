@@ -1,4 +1,4 @@
-package com.reluck.java_marvelapi;
+package com.reluck.java_marvelapi.data;
 
 import java.util.List;
 

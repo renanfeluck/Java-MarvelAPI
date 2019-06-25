@@ -1,5 +1,6 @@
-package com.reluck.java_marvelapi;
+package com.reluck.java_marvelapi.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import android.os.Build;
@@ -7,6 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.reluck.java_marvelapi.data.ApiResponse;
+import com.reluck.java_marvelapi.data.Film;
+import com.reluck.java_marvelapi.adapters.MyAdapter;
+import com.reluck.java_marvelapi.R;
+import com.reluck.java_marvelapi.providers.StarWarsApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +34,7 @@ public class MainActivity extends Activity {
     private StarWarsApi starWarsApi = new StarWarsApi();
 
 
+    @SuppressLint("CheckResult")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +52,11 @@ public class MainActivity extends Activity {
                         myDataset.add(movie);
                     });
                     initRecylcer();
+                }, error -> {
+                    Toast toast = Toast.makeText(this,"Error" + error, Toast.LENGTH_SHORT);
+                    toast.show();
+                    System.out.println(error);
                 });
-
     }
 
     private void initRecylcer(){

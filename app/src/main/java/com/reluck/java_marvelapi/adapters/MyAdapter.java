@@ -1,4 +1,4 @@
-package com.reluck.java_marvelapi;
+package com.reluck.java_marvelapi.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.reluck.java_marvelapi.data.Film;
+import com.reluck.java_marvelapi.R;
+import com.reluck.java_marvelapi.activities.FilmActivity;
 
 import java.util.List;
 

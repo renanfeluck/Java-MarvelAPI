@@ -38,7 +38,7 @@ public class StarWarsApi {
         return service.listFilms();
     }
 
-    public Observable<Film> getMovie(String id) {
+    public Observable<Film> getMovie(String url) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -47,7 +47,7 @@ public class StarWarsApi {
 
         StarWarsService service = retrofit.create(StarWarsService.class);
 
-        id = id.split(BASE_URL)[1];
+        String id = url.split(BASE_URL)[1];
 
         return service.getFilm(id);
     }

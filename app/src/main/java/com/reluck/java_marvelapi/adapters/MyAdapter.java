@@ -30,7 +30,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.textTitle.setText(mDataset.get(position).getTitle());
-        String teste = mDataset.get(position).getTitle();
         holder.textDate.setText(mDataset.get(position).getReleaseDate());
 
         holder.view.setOnClickListener(v -> {

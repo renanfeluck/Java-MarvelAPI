@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.reluck.java_marvelapi.data.ApiResponse;
@@ -33,7 +35,6 @@ public class MainActivity extends Activity {
     private Observable<ApiResponse> filmsObservable;
     private StarWarsApi starWarsApi = new StarWarsApi();
 
-
     @SuppressLint("CheckResult")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -41,6 +42,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.my_recycler_view);
+
+        ProgressBar progressBar = findViewById(R.id.progressBar);
 
         filmsObservable = starWarsApi.getMovies();
 
@@ -52,9 +55,11 @@ public class MainActivity extends Activity {
                         myDataset.add(movie);
                     });
                     initRecylcer();
+                    progressBar.setVisibility(View.GONE);
                 }, error -> {
                     Toast toast = Toast.makeText(this,"Error" + error, Toast.LENGTH_SHORT);
                     toast.show();
+                    progressBar.setVisibility(View.GONE);
                     System.out.println(error);
                 });
     }

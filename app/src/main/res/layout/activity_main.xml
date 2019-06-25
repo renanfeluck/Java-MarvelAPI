@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
     tools:context=".activities.MainActivity">
 
     <ImageView
         android:id="@+id/imageVader"
         android:layout_width="129dp"
         android:layout_height="98dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic__darth_vader"
         app:layout_constraintStart_toStartOf="parent"
